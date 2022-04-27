@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 각 sql 태그의 태그 id 와 ProductDAO 메소드 이름 동일하다면 자동 호출 -->  
+ <mapper namespace="product.ProductDAO" >
+ 	<select id="selectAllProduct" resultType="productdto">
+ 		select productcode, productname, price
+ 		from product
+ 	</select>
+ 	<select id="selectProduct" resultType="productdto" parameterType="int">
+ 		select productcode, productname, price, company, balance, date_format(regdate, '%Y년도%m월%d일') as regdate
+ 		from product
+ 		where productcode=#{code}
+ 	</select>
+ </mapper>
